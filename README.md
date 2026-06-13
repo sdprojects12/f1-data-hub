@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# F1 Data Hub 🏎️
+
+A Formula 1 data website built with Next.js, TypeScript, and Tailwind CSS. Explore drivers, teams, race results, and championship standings from every F1 season since 1950.
+
+## Live Site
+Coming soon on Vercel.
+
+## Features
+
+- **Drivers** — Browse the 2026 F1 grid, view career stats, wins, podiums, and championships
+- **Teams** — All 11 constructors with team info, principals, and driver lineups
+- **Race Archive** — Full race results from every Grand Prix since 1950
+- **Standings** — Driver and Constructor championship standings for every season
+- **Compare** — Head-to-head career stat comparison between any two drivers
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org/) — Framework
+- [TypeScript](https://www.typescriptlang.org/) — Language
+- [Tailwind CSS v4](https://tailwindcss.com/) — Styling
+- [OpenF1 API](https://openf1.org/) — Live 2026 driver and session data
+- [Jolpica/Ergast API](https://api.jolpi.ca/) — Historical race results and standings
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18 or higher
+- npm
 
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/YourUsername/f1-data-hub.git
+cd f1-data-hub
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Project Structure
+f1-data-hub/
+├── app/                    # Pages and API routes
+│   ├── page.tsx            # Home page
+│   ├── drivers/            # Drivers page
+│   ├── teams/              # Teams page
+│   ├── races/              # Race archive
+│   ├── standings/          # Championship standings
+│   ├── compare/            # Driver comparison
+│   └── api/career/         # Career stats API route
+├── components/             # Reusable UI components
+├── lib/openf1.ts           # All API functions
+├── types/f1.ts             # TypeScript type definitions
+├── data/teams.ts           # Local team data
+└── public/                 # Static images
 
-To learn more about Next.js, take a look at the following resources:
+## Data Sources
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **OpenF1 API** — Free, no API key required. Provides live session and driver data from 2023 onwards.
+- **Jolpica/Ergast API** — Free, no API key required. Provides complete F1 historical data from 1950 to present.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
+- Constructor standings are only available from 1958 onwards (when they were introduced).
+- Driver images are sourced from the OpenF1 API and may not always reflect the latest season.
+- Best lap times are only available for sessions with OpenF1 data (2023+).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT
