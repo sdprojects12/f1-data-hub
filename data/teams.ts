@@ -1,0 +1,136 @@
+export interface TeamInfo {
+  name: string;
+  shortName: string;
+  base: string;
+  principal: string;
+  championships: number;
+  firstEntry: number;
+  color: string;
+  // When you're ready to add images, just drop files in /public and update these:
+  logoPath: string | null;
+  carImagePath: string | null;
+}
+
+export const TEAMS: Record<string, TeamInfo> = {
+  "McLaren": {
+    name: "McLaren",
+    shortName: "MCL",
+    base: "Woking, United Kingdom",
+    principal: "Andrea Stella",
+    championships: 10,
+    firstEntry: 1966,
+    color: "#FF8000",
+    logoPath: "/logos/mclaren.png",
+    carImagePath: "/cars/mclaren.png",
+  },
+  "Ferrari": {
+    name: "Ferrari",
+    shortName: "FER",
+    base: "Maranello, Italy",
+    principal: "Frédéric Vasseur",
+    championships: 16,
+    firstEntry: 1950,
+    color: "#E8002D",
+    logoPath: "/logos/ferrari.png",
+    carImagePath: "/cars/ferrari.png",
+  },
+  "Red Bull Racing": {
+    name: "Red Bull Racing",
+    shortName: "RBR",
+    base: "Milton Keynes, United Kingdom",
+    principal: "Laurent Mekies",
+    championships: 6,
+    firstEntry: 2005,
+    color: "#3671C6",
+    logoPath: "/logos/redbull.png",
+    carImagePath: "/cars/redbull.png",
+  },
+  "Mercedes": {
+    name: "Mercedes",
+    shortName: "MER",
+    base: "Brackley, United Kingdom",
+    principal: "Toto Wolff",
+    championships: 8,
+    firstEntry: 1954,
+    color: "#27F4D2",
+    logoPath: "/logos/mercedes.png",
+    carImagePath: "/cars/mercedes.png",
+  },
+  "Aston Martin": {
+    name: "Aston Martin",
+    shortName: "AMR",
+    base: "Silverstone, United Kingdom",
+    principal: "Adrian Newey",
+    championships: 0,
+    firstEntry: 2021,
+    color: "#229971",
+    logoPath: "/logos/astonmartin.png",
+    carImagePath: "/cars/astonmartin.png",
+  },
+  "Alpine": {
+    name: "Alpine",
+    shortName: "ALP",
+    base: "Enstone, United Kingdom",
+    principal: "Flavio Briatore",
+    championships: 0,
+    firstEntry: 2021,
+    color: "#FF87BC",
+    logoPath: "/logos/alpine.png",
+    carImagePath: "/cars/alpine.png",
+  },
+  "Haas F1 Team": {
+    name: "Haas F1 Team",
+    shortName: "HAS",
+    base: "Kannapolis, United States",
+    principal: "Ayao Komatsu",
+    championships: 0,
+    firstEntry: 2016,
+    color: "#B6BABD",
+    logoPath: "/logos/haas.png",
+    carImagePath: "/cars/haas.png",
+  },
+  "Racing Bulls": {
+    name: "Racing Bulls",
+    shortName: "RCB",
+    base: "Faenza, Italy",
+    principal: "Alan Permane",
+    championships: 0,
+    firstEntry: 2006,
+    color: "#6692FF",
+    logoPath: "/logos/racingbulls.png",
+    carImagePath: "/cars/racingbulls.png",
+  },
+  "Williams": {
+    name: "Williams",
+    shortName: "WIL",
+    base: "Grove, United Kingdom",
+    principal: "James Vowles",
+    championships: 7,
+    firstEntry: 1977,
+    color: "#64C4FF",
+    logoPath: "/logos/williams.png",
+    carImagePath: "/cars/williams.png",
+  },
+  "Audi": {
+    name: "Audi",
+    shortName: "AUD",
+    base: "Hinwil, Switzerland",
+    principal: "Mattia Binotto",
+    championships: 0,
+    firstEntry: 2026,
+    color: "#C00000",
+    logoPath: "/logos/audi.png",
+    carImagePath: "/cars/audi.png",
+  },
+  "Cadillac": {
+  name: "Cadillac",
+  shortName: "CAD",
+  base: "Fishers, Indiana, USA",
+  principal: "Graeme Lowdon",
+  championships: 0,
+  firstEntry: 2026,
+  color: "#FFFFFF",
+  logoPath: "/logos/cadillac.png",
+  carImagePath: "/cars/cadillac.png",
+  },
+};
