@@ -62,6 +62,7 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tight mb-6">
             The home of{" "}
             <span
+              suppressHydrationWarning
               className="relative inline-block"
               style={{
                 background: "linear-gradient(135deg, #E8002D, #C89B3C)",
@@ -103,6 +104,7 @@ export default function HomePage() {
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <p
+                suppressHydrationWarning
                 className="text-4xl font-black mb-1"
                 style={{
                   background: "linear-gradient(135deg, #E8002D, #C89B3C)",
