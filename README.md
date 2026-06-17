@@ -48,21 +48,43 @@ npm run dev
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
+```text
 f1-data-hub/
-├── app/                    # Pages and API routes
-│   ├── page.tsx            # Home page
-│   ├── drivers/            # Drivers page
-│   ├── teams/              # Teams page
-│   ├── races/              # Race archive
-│   ├── standings/          # Championship standings
-│   ├── compare/            # Driver comparison
-│   └── api/career/         # Career stats API route
-├── components/             # Reusable UI components
-├── lib/openf1.ts           # All API functions
-├── types/f1.ts             # TypeScript type definitions
-├── data/teams.ts           # Local team data
-└── public/                 # Static images
-
+├── app/                        # Next.js App Router (Pages & API Routes)
+│   ├── api/                    # Server-side API endpoints
+│   │   ├── career/             # Driver career statistics API route
+│   │   └── openf1/             # OpenF1 proxy to bypass CORS restrictions
+│   ├── compare/                # Driver head-to-head comparison page
+│   ├── drivers/                # Current grid drivers listing page
+│   ├── favorites/              # Saved/favorited drivers and teams page
+│   ├── races/                  # Historical race results page
+│   ├── standings/              # Driver & Constructor standings page
+│   ├── teams/                  # F1 constructor lineups and details page
+│   ├── globals.css             # Tailwind CSS global styles
+│   ├── layout.tsx              # Root layout defining navbar and site envelope
+│   └── page.tsx                # Home / Landing page
+├── components/                 # Reusable client & server React components
+│   ├── DriverCard.tsx          # Card interface displaying grid driver info
+│   ├── DriverModal.tsx         # In-depth modal with driver stats & charts
+│   ├── Navbar.tsx              # Application-wide responsive navigation menu
+│   ├── StandingsControls.tsx   # Controls to query season/type of standings
+│   ├── TeamCard.tsx            # Card interface for F1 constructors
+│   └── TeamModal.tsx           # In-depth modal with constructor info
+├── data/                       # Local static database datasets
+│   └── teams.ts                # Constructor histories, grid lineups, and primary hex colors
+├── lib/                        # Utility modules and API client wrappers
+│   ├── favorites.ts            # LocalStorage helper functions for driver/team saving
+│   └── openf1.ts               # API integrations for OpenF1 (live) & Jolpica Ergast (historical)
+├── public/                     # Public static assets
+│   ├── cars/                   # High-quality images of team cars
+│   ├── drivers/                # High-quality driver portrait headshots
+│   └── logos/                  # High-quality vector team branding logos
+├── scripts/                    # Diagnostic and utility scripts
+│   └── check_openf1.js         # direct command-line validator for OpenF1 API status
+├── types/                      # TypeScript definitions
+│   └── f1.ts                   # Strongly typed interfaces for F1 data contracts
+└── [Config Files]              # tsconfig.json, next.config.mjs, postcss.config.mjs, etc.
+```
 ## Data Sources
 
 - **OpenF1 API** — Free, no API key required. Provides live session and driver data from 2023 onwards.
