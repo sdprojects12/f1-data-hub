@@ -1,31 +1,6 @@
 import { getDriverStandings, getConstructorStandings } from "@/lib/openf1";
 import StandingsControls from "@/components/StandingsControls";
 
-type DriverStanding = {
-  position: string;
-  points: string;
-  wins: string;
-  Driver: {
-    driverId: string;
-    givenName: string;
-    familyName: string;
-    nationality: string;
-    permanentNumber?: string;
-  };
-  Constructors: { name: string; constructorId: string }[];
-};
-
-type ConstructorStanding = {
-  position: string;
-  points: string;
-  wins: string;
-  Constructor: {
-    constructorId: string;
-    name: string;
-    nationality: string;
-  };
-};
-
 const CURRENT_YEAR = 2026;
 const MIN_YEAR = 1950;
 const years = Array.from(

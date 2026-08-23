@@ -27,6 +27,7 @@ const DRIVER_ID_MAP: Record<string, string> = {
   DOO: "doohan",
   COL: "colapinto",
   LIN: "lindblad",
+  PER: "perez",
 };
 // Fetches all races for a driver in a single request by setting limit=1000
 async function fetchAllRaces(url: string): Promise<{ Results: { position: string }[] }[]> {
@@ -77,9 +78,11 @@ export async function GET(
     let championships = 0;
     if (standingsRes.ok) {
       const standingsData = await standingsRes.json();
-      const lists = standingsData?.MRData?.StandingsTable?.StandingsLists ?? [];
+      const lists =
+        standingsData?.MRData?.StandingsTable?.StandingsLists ?? [];
       championships = lists.filter(
-        (list: any) => list.DriverStandings?.[0]?.position === "1"
+        (list: { DriverStandings?: { position?: string }[] }) =>
+          list.DriverStandings?.[0]?.position === "1"
       ).length;
     }
 
