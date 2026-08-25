@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Driver } from "@/types/f1";
-import { DRIVER_IMAGES } from "@/lib/openf1";
+import { resolveHeadshot } from "@/lib/openf1";
 import { addFavorite, removeFavorite, isFavorite } from "@/lib/favorites";
 import { useState,} from "react";
 
@@ -53,18 +53,18 @@ const [faved, setFaved] = useState(() =>
           background: `radial-gradient(ellipse at top, ${teamColor}15, transparent 70%)`,
         }}
       >
-        {driver.headshot_url || DRIVER_IMAGES[driver.driver_number] ? (
+        {resolveHeadshot(driver.headshot_url, driver.driver_number) ? (
           <Image
-            src={DRIVER_IMAGES[driver.driver_number] ?? driver.headshot_url}
+            src={resolveHeadshot(driver.headshot_url, driver.driver_number)!}
             alt={driver.full_name}
             width={90}
             height={90}
-            className="object-contain relative z-10 w-auto h-auto"
+            className="relative z-10 w-[90px] h-[90px] object-cover object-top"
             loading="eager"
             unoptimized
             style={{
-              maxWidth: "100%",
-              height: "auto"
+              maskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
             }} />
         ) : (
           <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center text-4xl">

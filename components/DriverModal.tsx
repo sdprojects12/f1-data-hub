@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { Driver } from "@/types/f1";
 import { useEffect, useState, useRef } from "react";
-import { getDriverCareerStats, getDriverBestLap, DRIVER_IMAGES } from "@/lib/openf1";
+import { getDriverCareerStats, getDriverBestLap, resolveHeadshot } from "@/lib/openf1";
 
 
 
@@ -113,17 +113,17 @@ export default function DriverModal({ driver, onClose, lastSessionKey }: Props) 
             background: `radial-gradient(ellipse at top, ${teamColor}20, transparent 70%)`,
           }}
         >
-          {driver.headshot_url ? (
+          {resolveHeadshot(driver.headshot_url, driver.driver_number) ? (
             <Image
-              src={DRIVER_IMAGES[driver.driver_number] ?? driver.headshot_url}
+              src={resolveHeadshot(driver.headshot_url, driver.driver_number)!}
               alt={driver.full_name}
               width={140}
               height={140}
-              className="object-contain w-auto h-auto"
+              className="w-[140px] h-[140px] object-cover object-top"
               unoptimized
               style={{
-                maxWidth: "100%",
-                height: "auto"
+                maskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
               }} />
           ) : (
             <div className="w-32 h-32 rounded-full bg-white/5 flex items-center justify-center text-5xl">

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { TeamInfo } from "@/data/teams";
 import { Driver } from "@/types/f1";
 import Image from "next/image";
+import { resolveHeadshot } from "@/lib/openf1";
 
 interface Props {
   team: TeamInfo | null;
@@ -162,17 +163,16 @@ export default function TeamModal({ team, drivers, onClose }: Props) {
                     className="bg-white/5 rounded-xl p-3 flex items-center gap-3"
                     style={{ borderLeft: `2px solid ${team.color}` }}
                   >
-                    {driver.headshot_url && (
+                    {resolveHeadshot(driver.headshot_url, driver.driver_number) && (
                       <Image
-                        src={driver.headshot_url}
+                        src={resolveHeadshot(driver.headshot_url, driver.driver_number)!}
                         alt={driver.full_name}
                         width={44}
                         height={44}
-                        className="object-contain shrink-0"
+                        className="shrink-0 w-[44px] h-[44px] object-cover object-top"
                         unoptimized
                         style={{
-                          maxWidth: "100%",
-                          height: "auto"
+                          borderRadius: "50%",
                         }} />
                     )}
                     <div className="min-w-0">
