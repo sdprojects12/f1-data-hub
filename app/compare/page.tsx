@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getDriversClient } from "@/lib/openf1";
+import { getDriversClient, resolveHeadshot } from "@/lib/openf1";
 import { Driver } from "@/types/f1";
 import Image from "next/image";
-import { DRIVER_IMAGES } from "@/lib/openf1";
 
 interface CareerStats {
   wins: number;
@@ -157,17 +156,17 @@ useEffect(() => {
                 <div className="p-6 text-center">
                   {side.driver ? (
                     <>
-                      {side.driver.headshot_url && (
+                      {resolveHeadshot(side.driver.headshot_url, side.driver.driver_number) && (
                         <Image
-                          src={DRIVER_IMAGES[side.driver.driver_number] ?? side.driver.headshot_url}
+                          src={resolveHeadshot(side.driver.headshot_url, side.driver.driver_number)!}
                           alt={side.driver.full_name}
                           width={120}
                           height={120}
-                          className="object-contain mx-auto mb-3"
+                          className="mx-auto mb-3 w-[120px] h-[120px] object-cover object-top"
                           unoptimized
                           style={{
-                            maxWidth: "100%",
-                            height: "auto"
+                            maskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
+                            WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 50% 38%, black 55%, transparent 100%)",
                           }} />
                       )}
                       <p className="text-gray-500 font-mono text-sm">

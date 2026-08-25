@@ -18,35 +18,36 @@ export const TEAM_ORDER: Record<string, number> = {
   "Cadillac": 12,
 };
 
-// Driver image overrides — local images take priority over API images
-export const DRIVER_IMAGES: Record<number, string> = {
-  1:  "/drivers/1.png",
-  3:  "/drivers/3.png",
-  5:  "/drivers/5.png",
-  6:  "/drivers/6.png",
-  7:  "/drivers/7.png",
-  10: "/drivers/10.png",
-  11: "/drivers/11.png",
-  12: "/drivers/12.png",
-  14: "/drivers/14.png",
-  16: "/drivers/16.png",
-  18: "/drivers/18.png",
-  22: "/drivers/22.png",
-  23: "/drivers/23.png",
-  27: "/drivers/27.png",
-  30: "/drivers/30.png",
-  31: "/drivers/31.png",
-  38: "/drivers/38.png",
-  41: "/drivers/41.png",
-  43: "/drivers/43.png",
-  44: "/drivers/44.png",
-  55: "/drivers/55.png",
-  63: "/drivers/63.png",
-  77: "/drivers/77.png",
-  81: "/drivers/81.png",
-  87: "/drivers/87.png",
-  94: "/drivers/94.png",
+// Local overrides for drivers whose API headshots are missing or outdated
+export const HEADSHOT_OVERRIDES: Record<number, string> = {
+  5:  "/drivers/5.png",   // Bortoleto — multiviewer 2026 (Audi outfit)
+  6:  "/drivers/6.png",   // Hadjar — multiviewer 2026 (Red Bull outfit)
+  11: "/drivers/11.png",  // Perez — multiviewer 2026 (Cadillac outfit)
+  27: "/drivers/27.png",  // Hulkenberg — multiviewer 2026 (Audi outfit)
+  31: "/drivers/31.png",  // Ocon — multiviewer 2026 (Haas outfit)
+  38: "/drivers/38.png",  // Bearman — multiviewer 2026 (Haas outfit)
+  41: "/drivers/41.png",  // Lindblad — multiviewer 2026 (F1.com has no image)
+  77: "/drivers/77.png",  // Bottas — multiviewer 2026 (Cadillac outfit)
 };
+
+// Resolve driver headshot: local override > API URL (upgraded to retina)
+export function resolveHeadshot(url: string | null, driverNumber: number): string | null {
+  if (HEADSHOT_OVERRIDES[driverNumber]) return HEADSHOT_OVERRIDES[driverNumber];
+  return getHeadshotUrl(url);
+}
+
+// Upgrade API headshot URLs to high-res 2col-retina and strip tracking prefix
+export function getHeadshotUrl(url: string | null): string | null {
+  if (!url) return null;
+  // Strip the tracking pixel prefix if present
+  let clean = url.replace(
+    "https://media.formula1.com/d_driver_fallback_image.png/content/dam",
+    "https://media.formula1.com/content/dam"
+  );
+  // Upgrade 1col → 2col-retina for higher resolution
+  clean = clean.replace("/1col/image.png", "/2col-retina/image.png");
+  return clean;
+}
 
 // Waits a given number of milliseconds
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
